@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Об авторе - Божественная комедия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .author-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        
+        .author-section {
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .author-section h2 {
+            color: var(--primary-color);
+            font-family: var(--font-primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.8rem;
+        }
+        
+        .author-section h3 {
+            color: var(--secondary-color);
+            font-family: var(--font-primary);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .author-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .author-section ul, .author-section ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .author-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .author-image {
+            float: right;
+            max-width: 40%;
+            margin: 0 0 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quote-block {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .quote-block cite {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 45%;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid var(--light-color);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-right: 15px solid var(--light-color);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10%;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10%;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .page-header {
+            background-color: var(--light-color);
+            padding: 40px 0;
+        }
+        
+        .florence-map {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .work-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .work-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+        }
+        
+        .work-card .year {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        
+        @media (max-width: 768px) {
+            .author-image {
+                float: none;
+                max-width: 100%;
+                margin: 0 0 20px 0;
+            }
+            
+            .timeline::after {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Божественная комедия</h1>
+                <p>Данте Алигьери</p>
+            </div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="text.html"><i class="fas fa-book"></i> Текст</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="analysis.html"><i class="fas fa-search"></i> Анализ</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> О поэме</a></li>
+                    <li><a href="author.html" class="active"><i class="fas fa-user"></i> Об авторе</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">Данте Алигьери</h1>
+                <p class="text-center">Биография и творческий путь великого поэта</p>
+            </div>
+        </section>
+
+        <section class="author-container">
+            <div class="author-section clearfix">
+                <h2>Биография</h2>
+                <img src="images/dante-portrait.jpg" alt="Портрет Данте Алигьери" class="author-image">
+                <p>Данте Алигьери (итал. Dante Alighieri, 1265-1321) — итальянский поэт, мыслитель, богослов, один из основоположников литературного итальянского языка. Данте является величайшим поэтом средневековой Италии, его называют «отцом итальянской литературы».</p>
+                
+                <h3>Ранние годы и образование</h3>
+                <p>Данте родился во Флоренции в 1265 году в семье среднего достатка, принадлежавшей к обедневшей ветви знатного рода. О его ранних годах известно немного, но предполагается, что он получил хорошее образование, изучая риторику, грамматику, философию, литературу и богословие.</p>
+                
+                <p>В молодости Данте учился у знаменитого мыслителя Брунетто Латини, а также, возможно, посещал университеты в Болонье и Падуе, хотя документальных свидетельств об этом не сохранилось.</p>
+                
+                <h3>Беатриче</h3>
+                <p>Ключевую роль в жизни и творчестве Данте сыграла его встреча с Беатриче Портинари в 1274 году, когда ему было всего девять лет. Эта встреча, по свидетельству самого поэта в его произведении «Новая жизнь», оказала определяющее влияние на его судьбу.</p>
+                
+                <p>Несмотря на то, что Данте, вероятно, встречался с Беатриче лишь несколько раз в жизни и был женат на другой женщине, его любовь к ней переросла в глубокое духовное чувство. После смерти Беатриче в 1290 году Данте сублимировал свою любовь в поэзию, а образ Беатриче в «Божественной комедии» стал символом божественной благодати.</p>
+                
+                <div class="quote-block">
+                    <p>Любовь, что движет солнце и светила.</p>
+                    <cite>Последняя строка "Божественной комедии"</cite>
+                </div>
+                
+                <h3>Политическая деятельность и изгнание</h3>
+                <p>Данте принимал активное участие в политической жизни Флоренции. В 1295 году он вступил в гильдию врачей и аптекарей, что позволило ему участвовать в управлении городом. В 1300 году Данте был избран одним из шести приоров (высших должностных лиц) Флоренции.</p>
+                
+                <p>Однако политическая ситуация была сложной из-за борьбы между гвельфами (сторонниками папской власти) и гибеллинами (сторонниками императора). Внутри партии гвельфов, к которой принадлежал Данте, произошел раскол на «черных» и «белых». Данте примкнул к «белым», что стало причиной его изгнания в 1302 году, когда к власти во Флоренции пришли «черные» гвельфы.</p>
+                
+                <p>Данте был заочно приговорен к штрафу и двухлетнему изгнанию, а когда он отказался платить и возвращаться, приговор был заменен на смертную казнь через сожжение. Поэт никогда больше не увидел родную Флоренцию, проведя остаток жизни в изгнании.</p>
+            </div>
+            
+            <div class="author-section">
+                <h2>Жизнь в изгнании</h2>
+                <p>Изгнание стало поворотным моментом в жизни Данте. На протяжении почти двадцати лет он скитался по разным городам Италии, находя временное пристанище при дворах различных правителей.</p>
+                
+                <h3>Странствия</h3>
+                <p>В первые годы изгнания Данте жил в Вероне при дворе Скалигеров, затем в Луниджане, Падуе, Тревизо. Позднее он нашел покровительство у графа Гвидо Новелло да Полента в Равенне, где и провел последние годы жизни.</p>
+                
+                <p>Несмотря на тяжелое положение изгнанника, именно в этот период Данте создал свои самые значительные произведения, включая «Божественную комедию», над которой он работал примерно с 1307 года до самой смерти.</p>
+                
+                <h3>Последние годы и смерть</h3>
+                <p>В 1321 году Данте отправился с дипломатической миссией в Венецию по поручению своего покровителя, правителя Равенны. На обратном пути он заболел малярией и вскоре умер, в ночь с 13 на 14 сентября 1321 года, в возрасте 56 лет.</p>
+                
+                <p>Данте был похоронен с почестями в Равенне, в церкви Сан-Франческо. Флоренция неоднократно пыталась вернуть останки великого поэта, но Равенна всегда отказывала. Таким образом, даже после смерти Данте не вернулся в родной город, который так любил и так сурово критиковал в своих произведениях.</p>
+                
+                <h3>Хронология жизни Данте</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1265</div>
+                            <p>Родился во Флоренции, в семье Алигьеро ди Беллинчоне.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1274</div>
+                            <p>Первая встреча с Беатриче Портинари, которая впоследствии стала его музой.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1285</div>
+                            <p>Женитьба на Джемме Донати, в браке с которой родилось несколько детей.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1290</div>
+                            <p>Смерть Беатриче. Данте погружается в изучение философии и богословия.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1295</div>
+                            <p>Вступает в гильдию врачей и аптекарей, начинает политическую карьеру.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1300</div>
+                            <p>Избран приором Флоренции, одним из высших должностных лиц города.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1302</div>
+                            <p>Изгнан из Флоренции по политическим мотивам, заочно приговорен к смерти.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1307</div>
+                            <p>Предположительно начало работы над "Божественной комедией".</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1319</div>
+                            <p>Поселяется в Равенне под покровительством Гвидо Новелло да Полента.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1321</div>
+                            <p>Умирает в Равенне от малярии после возвращения из дипломатической миссии в Венецию.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="author-section">
+                <h2>Творчество</h2>
+                <p>Творческое наследие Данте разнообразно и включает поэтические, философские и политические произведения. Его влияние на итальянскую и мировую литературу невозможно переоценить.</p>
+                
+                <h3>Основные произведения</h3>
+                
+                <div class="work-card">
+                    <h4>La Vita Nuova (Новая жизнь)</h4>
+                    <div class="year">Около 1292-1294</div>
+                    <p>Автобиографическая повесть, сочетающая стихи и прозу, посвященная любви Данте к Беатриче. Это первое значительное произведение Данте, в котором он разрабатывает концепцию "сладостного нового стиля" (dolce stil nuovo).</p>
+                </div>
+                
+                <div class="work-card">
+                    <h4>Il Convivio (Пир)</h4>
+                    <div class="year">1304-1307</div>
+                    <p>Философский трактат, задуманный как комментарий к 14 канцонам, хотя Данте успел прокомментировать только три. Трактат был написан на итальянском языке и охватывал различные философские, политические и научные темы.</p>
+                </div>
+                
+                <div class="work-card">
+                    <h4>De Vulgari Eloquentia (О народном красноречии)</h4>
+                    <div class="year">1303-1304</div>
+                    <p>Трактат на латыни о литературном использовании народного (итальянского) языка. Данте обосновывает достоинство итальянского языка как литературного и формулирует принципы его использования в поэзии.</p>
+                </div>
+                
+                <div class="work-card">
+                    <h4>Monarchia (Монархия)</h4>
+                    <div class="year">1312-1313</div>
+                    <p>Политический трактат на латыни, в котором Данте отстаивает идею всемирной монархии, где светская власть была бы независима от церковной. Из-за этих взглядов трактат был запрещен католической церковью и включен в Индекс запрещенных книг.</p>
+                </div>
+                
+                <div class="work-card">
+                    <h4>Divina Commedia (Божественная комедия)</h4>
+                    <div class="year">1307-1321</div>
+                    <p>Грандиозная эпическая поэма, считающаяся вершиной творчества Данте и одним из величайших произведений мировой литературы. Поэма написана на итальянском языке и состоит из трех частей: "Ад", "Чистилище" и "Рай". Это аллегорическое повествование о путешествии Данте через загробный мир, которое одновременно является путешествием души к Богу.</p>
+                </div>
+                
+                <h3>Значение творчества Данте</h3>
+                <p>Данте сыграл решающую роль в становлении итальянского литературного языка. Он первым среди крупных писателей выбрал для своих произведений не латынь, а народный язык (volgare), что способствовало повышению статуса итальянского языка и его литературному развитию.</p>
+                
+                <p>В своем творчестве Данте соединил средневековую религиозную мысль с зарождающимся гуманизмом Ренессанса. Его произведения, особенно "Божественная комедия", представляют собой синтез богословия, философии, политики, науки и личного опыта, что делает их уникальными для своего времени.</p>
+                
+                <p>Влияние Данте на литературу невозможно переоценить. Его произведения вдохновляли поэтов и писателей всех последующих эпох, от Петрарки и Боккаччо до Т.С. Элиота и Дж. Джойса.</p>
+            </div>
+            
+            <div class="author-section">
+                <h2>Данте и Флоренция</h2>
+                <p>Отношения Данте с родным городом были сложными и противоречивыми. С одной стороны, Флоренция изгнала поэта и приговорила его к смерти. С другой стороны, Данте никогда не переставал любить свой город и мечтать о возвращении.</p>
+                
+                <h3>Флоренция времен Данте</h3>
+                <p>Флоренция XIII-XIV веков была одним из самых процветающих и культурно богатых городов Европы. Это был крупный торговый центр с развитыми банковскими и ремесленными отраслями. В то же время город раздирали политические конфликты между различными фракциями.</p>
+                
+                <p>Данте упоминает многие флорентийские места и достопримечательности в своих произведениях, особенно в "Божественной комедии", где он часто критикует политическую ситуацию в городе и моральное разложение его жителей.</p>
+                
+                <h3>Памятники Данте во Флоренции</h3>
+                <p>Несмотря на то, что Данте умер в изгнании, Флоренция со временем признала его своим величайшим поэтом. В городе установлены памятники Данте, а его именем названы улицы и площади.</p>
+                
+                <p>В церкви Санта-Кроче находится кенотаф (символическая гробница) Данте, хотя его останки до сих пор покоятся в Равенне. В 2008 году городской совет Флоренции официально отменил приговор Данте, признав историческую несправедливость.</p>
+                
+                <h3>Дом-музей Данте</h3>
+                <p>В центре Флоренции находится Дом-музей Данте (Casa di Dante), построенный на месте, где, как считается, стоял родовой дом Алигьери. Хотя современное здание музея датируется XX веком, оно является важным культурным центром, посвященным жизни и творчеству великого поэта.</p>
+                
+                <div class="quote-block">
+                    <p>О славная Флоренция, о мать и повелительница, меня исторгнувшая из своего нежнейшего лона, в которой до этого дня лелеется моя душа.</p>
+                    <cite>Данте Алигьери</cite>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="text.html">Текст</a></li>
+                        <li><a href="gallery.html">Галерея</a></li>
+                        <li><a href="analysis.html">Анализ</a></li>
+                        <li><a href="about.html">О поэме</a></li>
+                        <li><a href="author.html">Об авторе</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ресурсы</h3>
+                    <ul>
+                        <li><a href="#">Библиография</a></li>
+                        <li><a href="#">Исследования</a></li>
+                        <li><a href="#">Экранизации</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>О проекте</h3>
+                    <p>Образовательный проект, посвященный изучению "Божественной комедии" Данте Алигьери.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Божественная комедия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

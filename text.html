@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текст - Божественная комедия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .text-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            line-height: 1.8;
+            font-family: var(--font-primary);
+        }
+        
+        .text-section {
+            margin-bottom: 60px;
+        }
+        
+        .text-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+        
+        .text-section h3 {
+            color: var(--secondary-color);
+            margin: 30px 0 15px;
+            font-size: 1.8rem;
+        }
+        
+        .text-section p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .verse {
+            font-style: italic;
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .verse-line {
+            margin-bottom: 5px;
+        }
+        
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            background-color: var(--light-color);
+            border: none;
+            padding: 15px 25px;
+            margin: 0 10px 10px;
+            cursor: pointer;
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        #text-inferno, #text-purgatorio, #text-paradiso {
+            display: none;
+        }
+        
+        #text-inferno.active, #text-purgatorio.active, #text-paradiso.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .canto-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0 20px;
+        }
+        
+        .canto-select {
+            padding: 10px;
+            font-family: var(--font-primary);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Божественная комедия</h1>
+                <p>Данте Алигьери</p>
+            </div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="text.html" class="active"><i class="fas fa-book"></i> Текст</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="analysis.html"><i class="fas fa-search"></i> Анализ</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> О поэме</a></li>
+                    <li><a href="author.html"><i class="fas fa-user"></i> Об авторе</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">Текст поэмы</h1>
+                <p class="text-center">Полный текст «Божественной комедии» в переводе М. Лозинского</p>
+            </div>
+        </section>
+
+        <section class="text-content">
+            <div class="container">
+                <div class="tab-navigation">
+                    <button class="tab-button active" data-target="text-inferno">Ад (Inferno)</button>
+                    <button class="tab-button" data-target="text-purgatorio">Чистилище (Purgatorio)</button>
+                    <button class="tab-button" data-target="text-paradiso">Рай (Paradiso)</button>
+                </div>
+
+                <div class="text-container">
+                    <div id="text-inferno" class="text-section active">
+                        <h2 id="inferno">Ад (Inferno)</h2>
+                        
+                        <div class="canto-navigation">
+                            <select class="canto-select" id="inferno-select">
+                                <option value="1">Песнь I</option>
+                                <option value="2">Песнь II</option>
+                                <option value="3">Песнь III</option>
+                                <!-- и так далее до 34 -->
+                            </select>
+                        </div>
+                        
+                        <div id="inferno-canto-1">
+                            <h3>Песнь первая</h3>
+                            <div class="verse">
+                                <p class="verse-line">Земную жизнь пройдя до половины,</p>
+                                <p class="verse-line">Я очутился в сумрачном лесу,</p>
+                                <p class="verse-line">Утратив правый путь во тьме долины.</p>
+                                <p class="verse-line">Каков он был, о, как произнесу,</p>
+                                <p class="verse-line">Тот дикий лес, дремучий и грозящий,</p>
+                                <p class="verse-line">Чей давний ужас в памяти несу!</p>
+                                <!-- Здесь будет продолжение текста -->
+                            </div>
+                            <p>Здесь будет добавлен полный текст песни. Вы можете добавить его позже.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="text-purgatorio" class="text-section">
+                        <h2 id="purgatorio">Чистилище (Purgatorio)</h2>
+                        
+                        <div class="canto-navigation">
+                            <select class="canto-select" id="purgatorio-select">
+                                <option value="1">Песнь I</option>
+                                <option value="2">Песнь II</option>
+                                <option value="3">Песнь III</option>
+                                <!-- и так далее до 33 -->
+                            </select>
+                        </div>
+                        
+                        <div id="purgatorio-canto-1">
+                            <h3>Песнь первая</h3>
+                            <div class="verse">
+                                <p class="verse-line">Для лучших вод подъемля парус ныне,</p>
+                                <p class="verse-line">Мой гений вновь стремит свою ладью,</p>
+                                <p class="verse-line">Блуждавшую в столь яростной пучине;</p>
+                                <!-- Здесь будет продолжение текста -->
+                            </div>
+                            <p>Здесь будет добавлен полный текст песни. Вы можете добавить его позже.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="text-paradiso" class="text-section">
+                        <h2 id="paradiso">Рай (Paradiso)</h2>
+                        
+                        <div class="canto-navigation">
+                            <select class="canto-select" id="paradiso-select">
+                                <option value="1">Песнь I</option>
+                                <option value="2">Песнь II</option>
+                                <option value="3">Песнь III</option>
+                                <!-- и так далее до 33 -->
+                            </select>
+                        </div>
+                        
+                        <div id="paradiso-canto-1">
+                            <h3>Песнь первая</h3>
+                            <div class="verse">
+                                <p class="verse-line">Величие Того, Кто движет всё,</p>
+                                <p class="verse-line">Проникнув мирозданье, отражаясь,</p>
+                                <p class="verse-line">В одних местах быстрей, в других тишей.</p>
+                                <!-- Здесь будет продолжение текста -->
+                            </div>
+                            <p>Здесь будет добавлен полный текст песни. Вы можете добавить его позже.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="text.html">Текст</a></li>
+                        <li><a href="gallery.html">Галерея</a></li>
+                        <li><a href="analysis.html">Анализ</a></li>
+                        <li><a href="about.html">О поэме</a></li>
+                        <li><a href="author.html">Об авторе</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ресурсы</h3>
+                    <ul>
+                        <li><a href="#">Библиография</a></li>
+                        <li><a href="#">Исследования</a></li>
+                        <li><a href="#">Экранизации</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>О проекте</h3>
+                    <p>Образовательный проект, посвященный изучению "Божественной комедии" Данте Алигьери.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Божественная комедия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const textSections = document.querySelectorAll('.text-section');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and sections
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    textSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding section
+                    button.classList.add('active');
+                    const targetId = button.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+            
+            // Canto selection navigation
+            const infernoSelect = document.getElementById('inferno-select');
+            if (infernoSelect) {
+                infernoSelect.addEventListener('change', function() {
+                    // Here you would handle canto navigation when implemented
+                    const cantoNumber = this.value;
+                    // For now, just a placeholder
+                    console.log('Selected Inferno Canto:', cantoNumber);
+                });
+            }
+            
+            const purgatorioSelect = document.getElementById('purgatorio-select');
+            if (purgatorioSelect) {
+                purgatorioSelect.addEventListener('change', function() {
+                    const cantoNumber = this.value;
+                    console.log('Selected Purgatorio Canto:', cantoNumber);
+                });
+            }
+            
+            const paradisoSelect = document.getElementById('paradiso-select');
+            if (paradisoSelect) {
+                paradisoSelect.addEventListener('change', function() {
+                    const cantoNumber = this.value;
+                    console.log('Selected Paradiso Canto:', cantoNumber);
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

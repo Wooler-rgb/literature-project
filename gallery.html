@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея - Божественная комедия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gallery-container {
+            padding: 50px 0;
+        }
+        
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-tab {
+            background-color: var(--light-color);
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px 10px;
+            cursor: pointer;
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-tab:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .gallery-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            height: 300px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+        
+        .overlay h3 {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border: 3px solid white;
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-family: var(--font-primary);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-prev {
+            left: 15px;
+        }
+        
+        .lightbox-next {
+            right: 15px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .artist-info {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 30px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .artist-info h3 {
+            color: var(--primary-color);
+            font-family: var(--font-primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .artist-info p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .gallery-section {
+            display: none;
+        }
+        
+        .gallery-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Божественная комедия</h1>
+                <p>Данте Алигьери</p>
+            </div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="text.html"><i class="fas fa-book"></i> Текст</a></li>
+                    <li><a href="gallery.html" class="active"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="analysis.html"><i class="fas fa-search"></i> Анализ</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> О поэме</a></li>
+                    <li><a href="author.html"><i class="fas fa-user"></i> Об авторе</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">Галерея иллюстраций</h1>
+                <p class="text-center">Знаменитые произведения искусства, вдохновленные "Божественной комедией"</p>
+            </div>
+        </section>
+
+        <section class="gallery-container">
+            <div class="container">
+                <div class="gallery-tabs">
+                    <button class="gallery-tab active" data-target="all">Все работы</button>
+                    <button class="gallery-tab" data-target="dore">Гюстав Доре</button>
+                    <button class="gallery-tab" data-target="botticelli">Сандро Боттичелли</button>
+                    <button class="gallery-tab" data-target="blake">Уильям Блейк</button>
+                    <button class="gallery-tab" data-target="other">Другие художники</button>
+                </div>
+
+                <div id="all" class="gallery-section active">
+                    <div class="gallery-grid">
+                        <!-- Гюстав Доре -->
+                        <div class="gallery-item" data-artist="dore" data-section="inferno">
+                            <img src="images/dore-1.jpg" alt="Данте и Вергилий в лесу - Гюстав Доре">
+                            <div class="overlay">
+                                <h3>Данте и Вергилий в лесу</h3>
+                                <p>Гюстав Доре, 1857</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="dore" data-section="inferno">
+                            <img src="images/dore-2.jpg" alt="Вергилий защищает Данте от Миноса - Гюстав Доре">
+                            <div class="overlay">
+                                <h3>Вергилий защищает Данте от Миноса</h3>
+                                <p>Гюстав Доре, 1861</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="dore" data-section="inferno">
+                            <img src="images/dore-3.jpg" alt="Чистилище - Гюстав Доре">
+                            <div class="overlay">
+                                <h3>Чистилище</h3>
+                                <p>Гюстав Доре, 1868</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Сандро Боттичелли -->
+                        <div class="gallery-item" data-artist="botticelli" data-section="inferno">
+                            <img src="images/botticelli-1.jpg" alt="Карта Ада - Сандро Боттичелли">
+                            <div class="overlay">
+                                <h3>Карта Ада</h3>
+                                <p>Сандро Боттичелли, 1485</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="botticelli" data-section="purgatorio">
+                            <img src="images/botticelli-2.jpg" alt="Райские врата - Сандро Боттичелли">
+                            <div class="overlay">
+                                <h3>Райские врата</h3>
+                                <p>Сандро Боттичелли, 1485</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Уильям Блейк -->
+                        <div class="gallery-item" data-artist="blake" data-section="inferno">
+                            <img src="images/blake-1.jpg" alt="Круг предателей - Уильям Блейк">
+                            <div class="overlay">
+                                <h3>Круг предателей</h3>
+                                <p>Уильям Блейк, 1827</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Другие художники -->
+                        <div class="gallery-item" data-artist="other" data-section="inferno">
+                            <img src="images/bouguereau-1.jpg" alt="Данте и Вергилий - Вильям Бугро">
+                            <div class="overlay">
+                                <h3>Данте и Вергилий</h3>
+                                <p>Вильям Бугро, 1850</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="other" data-section="paradiso">
+                            <img src="images/dali-1.jpg" alt="Рай - Сальвадор Дали">
+                            <div class="overlay">
+                                <h3>Райское видение</h3>
+                                <p>Сальвадор Дали, 1960</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dore" class="gallery-section">
+                    <div class="artist-info">
+                        <h3>Гюстав Доре (1832-1883)</h3>
+                        <p>Гюстав Доре был знаменитым французским иллюстратором и гравером. Его серия иллюстраций к "Божественной комедии", созданная в 1861-1868 годах, считается одной из самых известных интерпретаций произведения Данте. Всего художник создал 136 гравюр, детально изображающих сцены из всех трех частей поэмы.</p>
+                        <p>Иллюстрации Доре отличаются драматизмом, выразительностью и мастерским использованием света и тени. Особенно впечатляющими считаются его работы, изображающие мрачные картины Ада и страдания грешников.</p>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-artist="dore" data-section="inferno">
+                            <img src="images/dore-1.jpg" alt="Данте и Вергилий в лесу - Гюстав Доре">
+                            <div class="overlay">
+                                <h3>Данте и Вергилий в лесу</h3>
+                                <p>Гюстав Доре, 1857</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="dore" data-section="inferno">
+                            <img src="images/dore-2.jpg" alt="Вергилий защищает Данте от Миноса - Гюстав Доре">
+                            <div class="overlay">
+                                <h3>Вергилий защищает Данте от Миноса</h3>
+                                <p>Гюстав Доре, 1861</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="dore" data-section="inferno">
+                            <img src="images/dore-3.jpg" alt="Чистилище - Гюстав Доре">
+                            <div class="overlay">
+                                <h3>Чистилище</h3>
+                                <p>Гюстав Доре, 1868</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="botticelli" class="gallery-section">
+                    <div class="artist-info">
+                        <h3>Сандро Боттичелли (1445-1510)</h3>
+                        <p>Сандро Боттичелли, итальянский художник эпохи Возрождения, создал серию изысканных рисунков для иллюстрации "Божественной комедии". Он работал над этими иллюстрациями почти 15 лет, с 1480 по 1495 год.</p>
+                        <p>В отличие от Доре, Боттичелли создавал более утонченные и детализированные изображения с множеством персонажей. Особенную ценность представляет его схематическое изображение структуры Ада, Чистилища и Рая, которое помогает читателям визуализировать космологию Данте.</p>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-artist="botticelli" data-section="inferno">
+                            <img src="images/botticelli-1.jpg" alt="Карта Ада - Сандро Боттичелли">
+                            <div class="overlay">
+                                <h3>Карта Ада</h3>
+                                <p>Сандро Боттичелли, 1485</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="botticelli" data-section="purgatorio">
+                            <img src="images/botticelli-2.jpg" alt="Райские врата - Сандро Боттичелли">
+                            <div class="overlay">
+                                <h3>Райские врата</h3>
+                                <p>Сандро Боттичелли, 1485</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="blake" class="gallery-section">
+                    <div class="artist-info">
+                        <h3>Уильям Блейк (1757-1827)</h3>
+                        <p>Уильям Блейк - английский поэт, художник и гравер, создавший серию акварельных иллюстраций к "Божественной комедии" в последние годы своей жизни. Несмотря на то, что цикл остался незавершенным из-за смерти художника, его работы отличаются оригинальным видением и мистическим содержанием.</p>
+                        <p>Иллюстрации Блейка менее реалистичны и более символичны, чем работы других художников. В них отражается личное восприятие художником духовных тем, затронутых в поэме Данте.</p>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-artist="blake" data-section="inferno">
+                            <img src="images/blake-1.jpg" alt="Круг предателей - Уильям Блейк">
+                            <div class="overlay">
+                                <h3>Круг предателей</h3>
+                                <p>Уильям Блейк, 1827</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="other" class="gallery-section">
+                    <div class="artist-info">
+                        <h3>Другие художники</h3>
+                        <p>"Божественная комедия" вдохновляла многих художников на протяжении веков, от Средневековья до наших дней. Среди них - Вильям Бугро, Эжен Делакруа, Сальвадор Дали и многие другие.</p>
+                        <p>Каждый художник привносил свой уникальный стиль и видение в интерпретацию великого произведения Данте, отражая эстетику и ценности своей эпохи.</p>
+                    </div>
+                    
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-artist="other" data-section="inferno">
+                            <img src="images/bouguereau-1.jpg" alt="Данте и Вергилий - Вильям Бугро">
+                            <div class="overlay">
+                                <h3>Данте и Вергилий</h3>
+                                <p>Вильям Бугро, 1850</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-artist="other" data-section="paradiso">
+                            <img src="images/dali-1.jpg" alt="Рай - Сальвадор Дали">
+                            <div class="overlay">
+                                <h3>Райское видение</h3>
+                                <p>Сальвадор Дали, 1960</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+        <span class="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+        <div class="lightbox-content">
+            <img src="" alt="">
+            <div class="lightbox-caption">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="text.html">Текст</a></li>
+                        <li><a href="gallery.html">Галерея</a></li>
+                        <li><a href="analysis.html">Анализ</a></li>
+                        <li><a href="about.html">О поэме</a></li>
+                        <li><a href="author.html">Об авторе</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ресурсы</h3>
+                    <ul>
+                        <li><a href="#">Библиография</a></li>
+                        <li><a href="#">Исследования</a></li>
+                        <li><a href="#">Экранизации</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>О проекте</h3>
+                    <p>Образовательный проект, посвященный изучению "Божественной комедии" Данте Алигьери.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Божественная комедия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const galleryTabs = document.querySelectorAll('.gallery-tab');
+            const gallerySections = document.querySelectorAll('.gallery-section');
+            
+            galleryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and sections
+                    galleryTabs.forEach(t => t.classList.remove('active'));
+                    gallerySections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding section
+                    tab.classList.add('active');
+                    const targetId = tab.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+            
+            // Lightbox functionality
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            
+            let currentIndex = 0;
+            let visibleItems = [];
+            
+            function updateVisibleItems() {
+                visibleItems = [];
+                const activeSection = document.querySelector('.gallery-section.active');
+                activeSection.querySelectorAll('.gallery-item').forEach(item => {
+                    visibleItems.push(item);
+                });
+            }
+            
+            function openLightbox(index) {
+                updateVisibleItems();
+                currentIndex = index;
+                
+                const currentItem = visibleItems[currentIndex];
+                const img = currentItem.querySelector('img');
+                const captionTitle = currentItem.querySelector('.overlay h3').textContent;
+                const captionText = currentItem.querySelector('.overlay p').textContent;
+                
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.querySelector('h3').textContent = captionTitle;
+                lightboxCaption.querySelector('p').textContent = captionText;
+                
+                lightbox.classList.add('active');
+            }
+            
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+            
+            function navigateLightbox(direction) {
+                currentIndex = (currentIndex + direction + visibleItems.length) % visibleItems.length;
+                
+                const currentItem = visibleItems[currentIndex];
+                const img = currentItem.querySelector('img');
+                const captionTitle = currentItem.querySelector('.overlay h3').textContent;
+                const captionText = currentItem.querySelector('.overlay p').textContent;
+                
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.querySelector('h3').textContent = captionTitle;
+                lightboxCaption.querySelector('p').textContent = captionText;
+            }
+            
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    openLightbox(Array.from(galleryItems).indexOf(this));
+                });
+            });
+            
+            lightboxClose.addEventListener('click', closeLightbox);
+            
+            lightboxPrev.addEventListener('click', function() {
+                navigateLightbox(-1);
+            });
+            
+            lightboxNext.addEventListener('click', function() {
+                navigateLightbox(1);
+            });
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Keyboard navigation for lightbox
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

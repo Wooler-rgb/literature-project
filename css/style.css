@@ -1,0 +1,482 @@
+/* Global Styles */
+:root {
+    --primary-color: #721121;
+    --secondary-color: #a63446;
+    --accent-color: #edaf11;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #333;
+    --font-primary: 'Georgia', 'Times New Roman', serif;
+    --font-secondary: 'Arial', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 3px;
+    background-color: var(--secondary-color);
+    color: white;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.center {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Header */
+header {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo h1 {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.logo p {
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--dark-color);
+    padding: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a i {
+    margin-right: 5px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--primary-color);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-color);
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/divine-comedy-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h2 {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+/* Sections Overview */
+.sections-overview {
+    padding: 80px 0;
+    background-color: var(--light-color);
+}
+
+.boxes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.box {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    flex: 1;
+    max-width: 350px;
+    text-align: center;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+#inferno {
+    background-image: url('../images/inferno.jpg');
+}
+
+#purgatorio {
+    background-image: url('../images/purgatorio.jpg');
+}
+
+#paradiso {
+    background-image: url('../images/paradiso.jpg');
+}
+
+.box h3 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    padding: 20px 20px 10px;
+    font-size: 1.5rem;
+}
+
+.box p {
+    padding: 0 20px 20px;
+    color: var(--text-color);
+}
+
+.box .btn-small {
+    margin-bottom: 20px;
+}
+
+/* Featured Artwork */
+.featured-artwork {
+    padding: 80px 0;
+}
+
+.gallery-preview {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-item {
+    flex: 1;
+    max-width: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    color: white;
+    text-align: center;
+}
+
+.overlay h3 {
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+}
+
+/* Quote Section */
+.quote {
+    background-color: var(--primary-color);
+    padding: 80px 0;
+    color: white;
+}
+
+blockquote {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    line-height: 1.4;
+}
+
+blockquote cite {
+    display: block;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-style: normal;
+    opacity: 0.8;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-color);
+}
+
+.footer-section p {
+    color: #ddd;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright p {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .boxes {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .box {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .gallery-preview {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .gallery-item {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    nav {
+        width: 100%;
+        display: none;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 0;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    blockquote {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 60vh;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+    }
+} 

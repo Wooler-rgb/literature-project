@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О поэме - Божественная комедия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        
+        .about-section {
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        .about-section h2 {
+            color: var(--primary-color);
+            font-family: var(--font-primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.8rem;
+        }
+        
+        .about-section h3 {
+            color: var(--secondary-color);
+            font-family: var(--font-primary);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        .about-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .about-section ul, .about-section ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .about-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .about-image {
+            display: block;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quote-block {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .quote-block cite {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 45%;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 15px solid var(--light-color);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-right: 15px solid var(--light-color);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10%;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10%;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .page-header {
+            background-color: var(--light-color);
+            padding: 40px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0;
+                padding-left: 70px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Божественная комедия</h1>
+                <p>Данте Алигьери</p>
+            </div>
+            <nav id="navbar">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="text.html"><i class="fas fa-book"></i> Текст</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Галерея</a></li>
+                    <li><a href="analysis.html"><i class="fas fa-search"></i> Анализ</a></li>
+                    <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> О поэме</a></li>
+                    <li><a href="author.html"><i class="fas fa-user"></i> Об авторе</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1 class="section-title">О «Божественной комедии»</h1>
+                <p class="text-center">История создания и влияние великой поэмы Данте</p>
+            </div>
+        </section>
+
+        <section class="about-container">
+            <div class="about-section">
+                <h2>История создания поэмы</h2>
+                <p>«Божественная комедия» (итал. Divina Commedia) — поэма, написанная Данте Алигьери в период с 1307 по 1321 год. Она считается главным произведением Данте и одним из величайших шедевров мировой литературы.</p>
+                
+                <p>Первоначально поэма называлась просто «Комедия» (итал. Commedia). Определение «Божественная» было добавлено Джованни Боккаччо в заголовке манускрипта, подготовленного им для Петрарки, и с тех пор стало традиционным.</p>
+                
+                <h3>Период создания</h3>
+                <p>Данте начал работу над поэмой в период своего изгнания из Флоренции. Изгнание стало поворотным моментом в жизни поэта и непосредственно повлияло на содержание и идейный смысл произведения. Поэма создавалась в течение примерно 14 лет и была завершена незадолго до смерти поэта.</p>
+                
+                <img src="images/dante-writing.jpg" alt="Данте за работой над Божественной комедией" class="about-image">
+                
+                <h3>Хронология создания</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1307-1308</div>
+                            <p>Начало работы над "Адом", первой частью поэмы.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1308-1312</div>
+                            <p>Завершение работы над "Адом".</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1313-1315</div>
+                            <p>Создание "Чистилища", второй части поэмы.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1316-1321</div>
+                            <p>Работа над "Раем", третьей и заключительной частью. Поэма была завершена незадолго до смерти Данте в 1321 году.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Рукописи и первые издания</h3>
+                <p>До нашего времени дошло более 600 рукописных копий «Божественной комедии», что свидетельствует о чрезвычайной популярности произведения уже в XIV-XV веках. Первое печатное издание поэмы появилось в 1472 году в итальянском городе Фолиньо.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>Сюжет и структура</h2>
+                <p>«Божественная комедия» представляет собой аллегорическое повествование о путешествии автора через три царства загробного мира: Ад, Чистилище и Рай.</p>
+                
+                <h3>Основной сюжет</h3>
+                <p>В начале поэмы Данте, странствуя по «сумрачному лесу» (аллегория греховной жизни), подвергается опасности со стороны трех зверей (символы различных пороков). На помощь ему приходит тень римского поэта Вергилия, посланного Беатриче — умершей возлюбленной Данте. Вергилий становится проводником Данте по Аду и Чистилищу. В Раю путеводителем Данте становится сама Беатриче, которая ведет его через небесные сферы к Эмпирею, где поэт удостаивается видения Бога.</p>
+                
+                <h3>Трехчастная структура</h3>
+                <p>Поэма разделена на три части, называемые кантиками:</p>
+                <ul>
+                    <li><strong>Ад (Inferno)</strong> — 34 песни</li>
+                    <li><strong>Чистилище (Purgatorio)</strong> — 33 песни</li>
+                    <li><strong>Рай (Paradiso)</strong> — 33 песни</li>
+                </ul>
+                
+                <p>Общее количество песен — 100, но поскольку первая песнь "Ада" является введением ко всей поэме, каждая кантика состоит из 33 песен, что символически отражает святость числа 3 (Святая Троица).</p>
+                
+                <img src="images/dante-cosmology.jpg" alt="Космология Данте" class="about-image">
+                
+                <h3>Строфика</h3>
+                <p>Поэма написана особым типом строфы, получившим название терцина — строфа из трех строк, связанных сложной системой рифмовки (aba, bcb, cdc и т.д.), которая как бы "сцепляет" строфы между собой, создавая непрерывное течение повествования.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>Значение и наследие</h2>
+                <p>«Божественная комедия» оказала огромное влияние на европейскую культуру и стала одним из наиболее изучаемых литературных произведений в мире.</p>
+                
+                <h3>Литературное значение</h3>
+                <p>Поэма Данте считается вершиной средневековой литературы и одновременно произведением, предвосхитившим эпоху Возрождения. Данте соединил в своей поэме религиозное мировоззрение Средневековья с гуманистическим интересом к человеку, характерным для Ренессанса.</p>
+                
+                <div class="quote-block">
+                    <p>Всех созданий земных мы всех благородней и выше.</p>
+                    <cite>Данте Алигьери</cite>
+                </div>
+                
+                <h3>Значение для итальянского языка</h3>
+                <p>«Божественная комедия» сыграла ключевую роль в формировании итальянского литературного языка. Выбрав для своего произведения не латынь, а тосканский диалект, Данте заложил основы национального итальянского языка.</p>
+                
+                <h3>Влияние на искусство</h3>
+                <p>На протяжении столетий «Божественная комедия» вдохновляла художников, скульпторов, композиторов и других деятелей искусства:</p>
+                <ul>
+                    <li>Более 500 художников создали иллюстрации к поэме, включая таких мастеров, как Боттичелли, Микеланджело, Уильям Блейк, Гюстав Доре;</li>
+                    <li>Музыкальные произведения, вдохновленные поэмой Данте, создавали Лист, Чайковский, Рахманинов;</li>
+                    <li>В современном искусстве мотивы «Божественной комедии» можно найти в кинематографе, литературе и даже видеоиграх.</li>
+                </ul>
+                
+                <img src="images/dante-legacy.jpg" alt="Памятник Данте во Флоренции" class="about-image">
+                
+                <h3>Современное восприятие</h3>
+                <p>Сегодня «Божественная комедия» продолжает оставаться одним из самых читаемых и изучаемых классических произведений. Её универсальные темы — путь человека к духовному просветлению, борьба добра и зла, любовь как высшая сила — остаются актуальными для современного читателя.</p>
+                
+                <p>В 2021 году мировое сообщество отметило 700-летие со дня смерти Данте Алигьери, что сопровождалось многочисленными культурными мероприятиями, конференциями и новыми исследованиями его творчества.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="text.html">Текст</a></li>
+                        <li><a href="gallery.html">Галерея</a></li>
+                        <li><a href="analysis.html">Анализ</a></li>
+                        <li><a href="about.html">О поэме</a></li>
+                        <li><a href="author.html">Об авторе</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ресурсы</h3>
+                    <ul>
+                        <li><a href="#">Библиография</a></li>
+                        <li><a href="#">Исследования</a></li>
+                        <li><a href="#">Экранизации</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>О проекте</h3>
+                    <p>Образовательный проект, посвященный изучению "Божественной комедии" Данте Алигьери.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Божественная комедия. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

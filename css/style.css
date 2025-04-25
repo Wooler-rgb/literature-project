@@ -223,15 +223,15 @@ nav ul li a.active {
 }
 
 #inferno {
-    background-image: url('../images/inferno.jpg');
+    background-image: url('../images/hell.jpeg');
 }
 
 #purgatorio {
-    background-image: url('../images/purgatorio.jpg');
+    background-image: url('../images/cleanse.jpeg');
 }
 
 #paradiso {
-    background-image: url('../images/paradiso.jpg');
+    background-image: url('../images/heaven.jpeg');
 }
 
 .box h3 {
@@ -253,32 +253,34 @@ nav ul li a.active {
 /* Featured Artwork */
 .featured-artwork {
     padding: 80px 0;
+    background-color: white;
 }
 
 .gallery-preview {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    margin-bottom: 30px;
 }
 
 .gallery-item {
-    flex: 1;
-    max-width: 350px;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    height: 300px;
 }
 
 .gallery-item img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .overlay {
@@ -287,14 +289,137 @@ nav ul li a.active {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 15px;
     color: white;
-    text-align: center;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+    transform: translateY(0);
 }
 
 .overlay h3 {
     font-family: var(--font-primary);
     font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.overlay p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Author Preview Section */
+.author-preview {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.author-card {
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--light-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.author-image {
+    flex: 0 0 35%;
+    position: relative;
+    overflow: hidden;
+}
+
+.author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.author-card:hover .author-image img {
+    transform: scale(1.05);
+}
+
+.author-info {
+    flex: 0 0 65%;
+    padding: 30px;
+}
+
+.author-info h3 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.author-dates {
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.author-info p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.author-info .btn-small {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Philosophical Quiz Section */
+.philosophical-quiz {
+    padding: 80px 0;
+    background-color: var(--light-color);
+}
+
+.quiz-intro {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--dark-color);
+}
+
+.quiz-questions {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.quiz-question {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-question:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-question h3 {
+    color: var(--primary-color);
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.quiz-question p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-color);
 }
 
 /* Quote Section */
@@ -399,13 +524,16 @@ footer {
     }
     
     .gallery-preview {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     
     .gallery-item {
+        height: 250px;
+    }
+    
+    .author-card {
         max-width: 100%;
-        margin-bottom: 20px;
     }
 }
 
@@ -461,6 +589,35 @@ footer {
     blockquote {
         font-size: 1.5rem;
     }
+    
+    .quiz-intro {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    .quiz-question {
+        padding: 20px;
+    }
+    
+    .quiz-question h3 {
+        font-size: 1.2rem;
+    }
+    
+    .quiz-question p {
+        font-size: 1rem;
+    }
+    
+    .author-card {
+        flex-direction: column;
+    }
+    
+    .author-image {
+        flex: 0 0 300px;
+    }
+    
+    .author-info {
+        flex: 1;
+    }
 }
 
 @media (max-width: 576px) {
@@ -478,5 +635,25 @@ footer {
     
     .btn {
         padding: 10px 20px;
+    }
+    
+    .gallery-preview {
+        grid-template-columns: 1fr;
+    }
+    
+    .quiz-question {
+        padding: 15px;
+    }
+    
+    .quiz-question h3 {
+        font-size: 1.1rem;
+    }
+    
+    .author-image {
+        flex: 0 0 200px;
+    }
+    
+    .author-info h3 {
+        font-size: 1.5rem;
     }
 } 
